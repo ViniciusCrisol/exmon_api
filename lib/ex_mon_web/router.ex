@@ -23,5 +23,11 @@ defmodule ExMonWeb.Router do
       pipe_through [:fetch_session, :protect_from_forgery]
       live_dashboard "/dashboard", metrics: ExMonWeb.Telemetry
     end
+
+    scope "/", ExMonWeb do
+      pipe_through :api
+
+      get "/", WelcomeController, :index
+    end
   end
 end
