@@ -27,19 +27,19 @@ defmodule ExMonWeb.TrainersController do
     |> handle_delete_response(conn)
   end
 
+  defp handle_response({:error, _error_status, _reason} = error, _conn, _view, _status), do: error
+
   defp handle_response({:ok, trainer}, conn, view, status) do
     conn
     |> put_status(status)
     |> render(view, trainer: trainer)
   end
 
-  defp handle_response({:error, _changeset} = error, _conn, _view, _status), do: error
+  defp handle_delete_response({:error, _error_status, _reason} = error, _conn), do: error
 
   defp handle_delete_response({:ok, _trainer}, conn) do
     conn
     |> put_status(:no_content)
     |> text("")
   end
-
-  defp handle_delete_response({:error, _reason} = error, _conn), do: error
 end

@@ -9,5 +9,5 @@ defmodule ExMon.Pokemon.Get do
   end
 
   defp handle_response({:ok, body}), do: {:ok, Pokemon.build(body)}
-  defp handle_response({:error, _body} = error), do: error
+  defp handle_response({:error, _status, _body} = error), do: error
 end

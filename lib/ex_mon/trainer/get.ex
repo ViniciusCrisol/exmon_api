@@ -8,7 +8,7 @@ defmodule ExMon.Trainer.Get do
     |> verify_uuid_and_get_trainer()
   end
 
-  defp verify_uuid_and_get_trainer(:error), do: {:error, "Invalid ID format!"}
+  defp verify_uuid_and_get_trainer(:error), do: {:error, :unauthorized, "Invalid ID format!"}
 
   defp verify_uuid_and_get_trainer({:ok, uuid}) do
     uuid
@@ -16,7 +16,7 @@ defmodule ExMon.Trainer.Get do
     |> get_trainer()
   end
 
-  defp get_trainer(nil), do: {:error, "Trainer not found!"}
+  defp get_trainer(nil), do: {:error, :not_found, "Trainer not found!"}
   defp get_trainer(trainer), do: {:ok, trainer}
 
   defp fetch_trainer(uuid), do: Repo.get(Trainer, uuid)

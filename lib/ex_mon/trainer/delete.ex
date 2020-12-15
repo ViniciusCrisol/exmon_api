@@ -8,7 +8,7 @@ defmodule ExMon.Trainer.Delete do
     |> verify_uuid_and_delete_trainer()
   end
 
-  defp verify_uuid_and_delete_trainer(:error), do: {:error, "Invalid ID format!"}
+  defp verify_uuid_and_delete_trainer(:error), do: {:error, :unauthorized, "Invalid ID format!"}
 
   defp verify_uuid_and_delete_trainer({:ok, uuid}) do
     uuid
@@ -16,7 +16,7 @@ defmodule ExMon.Trainer.Delete do
     |> delete_tariner()
   end
 
-  defp delete_tariner(nil), do: {:error, "Trainer not found!"}
+  defp delete_tariner(nil), do: {:error, :not_found, "Trainer not found!"}
   defp delete_tariner(trainer), do: Repo.delete(trainer)
 
   defp fetch_trainer(uuid), do: Repo.get(Trainer, uuid)

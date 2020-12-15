@@ -8,7 +8,8 @@ defmodule ExMon.Trainer.Update do
     |> verify_uuid_and_update_trainer(params)
   end
 
-  defp verify_uuid_and_update_trainer(:error, _params), do: {:error, "Invalid ID format!"}
+  defp verify_uuid_and_update_trainer(:error, _params),
+    do: {:error, :unauthorized, "Invalid ID format!"}
 
   defp verify_uuid_and_update_trainer({:ok, uuid}, params) do
     uuid
@@ -16,7 +17,7 @@ defmodule ExMon.Trainer.Update do
     |> update_trainer(params)
   end
 
-  defp update_trainer(nil, _params), do: {:error, "Trainer not found!"}
+  defp update_trainer(nil, _params), do: {:error, :not_found, "Trainer not found!"}
 
   defp update_trainer(trainer, params) do
     trainer
