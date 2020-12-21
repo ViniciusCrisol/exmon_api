@@ -1,5 +1,5 @@
 defmodule ExMon.Trainer.Pokemon.Delete do
-  alias ExMon.{Pokemon, Repo}
+  alias ExMon.{Trainer.Pokemon, Repo}
   alias Ecto.UUID
 
   def call(id) do
