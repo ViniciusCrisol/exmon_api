@@ -3,7 +3,6 @@ defmodule ExMon.Pokemon do
 
   @derive Jason.Encoder
   @enforce_keys @keys
-
   defstruct @keys
 
   def build(%{"id" => id, "name" => name, "weight" => weight, "types" => types}) do
